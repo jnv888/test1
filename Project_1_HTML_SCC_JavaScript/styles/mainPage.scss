@@ -1,0 +1,998 @@
+$violetColor: #342658;
+$whiteColor: #ffffff;
+$redColor: #ff4d4d;
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.grayStyle {
+    color: gray;
+}
+
+.language {
+    color: white;
+    background-color: $violetColor;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.chip {
+    background-color: #6d51b4;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0px 5px;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+.nested-chip {
+    background-color: #6d51b4;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0px 5px;
+    display: flex;
+    position: relative;
+    width: 100px;
+
+    &_nest {
+        width: 40%;
+        height: 80%;
+        bottom: 10%;
+        right: 5%;
+        border-radius: 14px;
+        background-color: green;
+        color: white;
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+@mixin field() {
+    background-color: white;
+    color: gray;
+    padding: 5px 10px;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    cursor: text;
+    margin: 0px 3px;
+    position: relative;
+
+    &:hover {
+        color: black;
+    }
+}
+
+@mixin body-text($color: #454545, $size: 18px) {
+    color: $color;
+    font-size: $size;
+}
+
+@mixin btn($background-color: #ff4d4d, $color: #ffffff) {
+    background-color: $background-color;
+    color: $color;
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+.select_style {
+    border: none;
+}
+
+.wrapper {
+    width: 1440px;
+    margin: 0 auto;
+
+    @media (max-width: 1440px) {
+        width: 100%;
+    }
+}
+
+.share_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+}
+// *************************************  Calendar *****************************************
+
+.hide {
+    border: none;
+    height: 20px;
+}
+
+.calendar {
+    width: 220px;
+    border: 1px solid black;
+    margin-top: 18px;
+    display: none;
+    background-color: $whiteColor;
+    position: absolute;
+    z-index: 1;
+}
+
+button {
+    width: 80%;
+    box-sizing: border-box;
+    background-color: $whiteColor;
+}
+.dataPickerBtn {
+    width: 49%;
+    box-sizing: border-box;
+    background-color: #d2cae5;
+}
+#daysTitle {
+    display: flex;
+    width: 100%;
+}
+#month {
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+}
+#days {
+    display: flex;
+    flex-wrap: wrap;
+}
+.day-title {
+    width: calc(100% / 7);
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+.inactive {
+    color: grey;
+    font-weight: normal;
+}
+
+// ******************************** input поля Откуда - Куда
+
+.fromBlock {
+    width: 220px;
+    border: 1px solid black;
+    margin-top: 18px;
+    display: none;
+    background-color: $whiteColor;
+    position: absolute;
+    z-index: 1;
+}
+
+// Блок с пассажирами
+
+.passBtn {
+    border: none;
+    height: 20px;
+}
+.pass {
+    width: 300px;
+    border: 1px solid black;
+    margin-top: 18px;
+    display: none;
+    background-color: $whiteColor;
+    position: absolute;
+    z-index: 1;
+    padding: 10px;
+    &_label {
+        color: gray;
+        font-style: oblique;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    &_btn {
+        background-color: $redColor;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        height: 40px;
+    }
+}
+.list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title {
+    display: flex;
+    flex-direction: column;
+
+    &_small {
+        font-size: 14px;
+        color: gray;
+    }
+}
+
+.list_btn-boxs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding: 10px 10px;
+}
+.list_btn_sign {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 0.7px solid gray;
+}
+
+.chips {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    &_item {
+        display: box;
+        border-radius: 40%;
+        color: gray;
+        border: 1px solid gray;
+        padding: 5px;
+
+        &:hover {
+            background-color: $redColor;
+            color: white;
+        }
+    }
+}
+
+// Заголовок
+
+.header {
+    background-color: $violetColor;
+    color: white;
+    padding: 20px 20px;
+
+    &_box {
+        display: flex;
+        justify-content: flex-end;
+
+        &_logo {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            position: absolute;
+            top: 10px;
+            left: 30px;
+
+            @media (max-width: 768px) {
+                display: none;
+            }
+            @media (min-width: 1700px) {
+                left: 230px;
+            }
+        }
+        @media (max-width: 500px) {
+            padding: 10px;
+        }
+    }
+
+    &_list {
+        display: flex;
+        gap: 150px;
+        list-style-type: none;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    &_list-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline solid;
+        }
+    }
+    .globe {
+        width: 20px;
+        height: 20px;
+    }
+
+    .menu {
+        display: none;
+        @media (max-width: 768px) {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            position: absolute;
+            gap: 40px;
+            right: 100px;
+        }
+    }
+
+    &_search {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 70px 0;
+        box-sizing: border-box;
+        gap: 0px;
+
+        &_title {
+            color: pink;
+            font-size: 32px;
+
+            @media (max-width: 768px) {
+                font-size: 25px;
+            }
+        }
+
+        &_chips {
+            display: inline-flex;
+            padding: 20px 0px 10px;
+
+            @media (max-width: 768px) {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+        }
+
+        &_fields {
+            display: inline-flex;
+            padding: 5px 0px 10px;
+
+            &_btn {
+                @include btn();
+                padding: 5px 10px;
+                width: 200px;
+                height: 50px;
+                margin: 0px 3px;
+
+                @media (max-width: 768px) {
+                    width: 100%;
+                    margin: 0px;
+                }
+            }
+
+            &_left {
+                @include field();
+                border-radius: 5px 0px 0px 5px;
+                margin: 0px;
+                border-right: 1px solid gray;
+
+                &_arrow {
+                    display: flex;
+                    position: absolute;
+                    right: -12px;
+                    bottom: 20%;
+                    width: 35px;
+                    height: 35px;
+                    z-index: 1;
+                    background-color: white;
+
+                    @media (max-width: 768px) {
+                        transform: rotate(90deg);
+                        right: 0px;
+                        top: 40px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    border-bottom: 1px solid gray;
+                    width: 100%;
+                }
+            }
+
+            &_center {
+                @include field();
+                margin: 0px;
+                border-right: 1px solid gray;
+
+                @media (max-width: 768px) {
+                    border-bottom: 1px solid gray;
+                    width: 100%;
+                }
+            }
+
+            &_right {
+                @include field();
+                border-radius: 0px 5px 5px 0px;
+                margin: 0px;
+
+                @media (max-width: 768px) {
+                    border-bottom: 1px solid gray;
+                    width: 100%;
+                }
+            }
+
+            @media (max-width: 768px) {
+                display: flex;
+                flex-direction: column;
+                width: 95%;
+            }
+        }
+
+        &_litleText {
+            &::before {
+                content: "🔗";
+                margin-right: 5px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
+}
+
+// Основная часть (body)
+.main {
+    background-color: #d3d3d3e5;
+    color: black;
+
+    // Секция инфо о билетах
+
+    &_tickets {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 10px 10px 30px 10px;
+        gap: 15px;
+        box-sizing: border-box;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+
+        &_card {
+            display: flex;
+            flex-direction: column;
+            border: #d3d3d3e5;
+            background-color: $whiteColor;
+            border-radius: 10px;
+            width: 50%;
+            box-sizing: border-box;
+            position: relative;
+
+            &_bigText {
+                @include body-text();
+                font-weight: bold;
+                padding: 20px 10px 10px;
+            }
+            &_smallTextBox {
+                display: inline-flex;
+                @include body-text(green, 12px);
+                padding: 0px 10px 15px;
+                gap: 5px;
+
+                &_block {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 5px;
+
+                    @media (max-width: 768px) {
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        gap: 5px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 16px;
+                }
+            }
+            &_btn {
+                @include btn(#fadadd, $redColor);
+                font-size: 16px;
+                border: none;
+                width: 30%;
+                height: 30px;
+                margin: 0px 10px 15px;
+
+                @media (max-width: 768px) {
+                    width: 60%;
+                    font-size: 16px;
+                }
+            }
+
+            &_red-btn {
+                @include btn();
+                font-size: 16px;
+                border: none;
+                width: 20%;
+                height: 30px;
+                margin: 0px 10px 15px;
+
+                @media (max-width: 768px) {
+                    width: 40%;
+                    font-size: 16px;
+                }
+            }
+
+            &_icon {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                bottom: 0px;
+                width: 90px;
+                height: 90px;
+
+                @media (max-width: 768px) {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+        }
+    }
+    // Блок карточек (популярные направления и TOP 10)
+    &_card {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 10px;
+        gap: 10px;
+        box-sizing: border-box;
+        padding-bottom: 30px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        &_share {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 75%;
+
+            &_title {
+                color: gray;
+                font-weight: bold;
+                font-size: 22px;
+            }
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+        }
+
+        //**** Популярные направления  ******
+        &_pop_dest {
+            display: flex;
+            gap: 20px;
+            border: #d3d3d3e5;
+            font-size: 16px;
+            background-color: $whiteColor;
+            border-radius: 10px;
+            box-sizing: border-box;
+            width: 100%;
+
+            @media (max-width: 768px) {
+                width: 100%;
+                flex-direction: column;
+                gap: 0px;
+            }
+
+            &_flight_price {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #d3d3d3e5;
+                box-sizing: border-box;
+                height: 60px;
+                justify-items: center;
+                align-items: center;
+                padding: 0px 10px;
+
+                &_price {
+                    @include body-text(#ff4d4d, 16px);
+                }
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: start;
+                    gap: 5px;
+                    height: 70px;
+                }
+            }
+        }
+        //**** TOP 10  ******
+
+        .info {
+            color: blue;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+
+        .airline {
+            color: blue;
+            font-size: 12px;
+        }
+        .star {
+            font-size: 14px;
+            @include btn(white, #ff4d4d);
+            margin-left: 130%;
+            margin-top: -5px;
+        }
+
+        &_rating {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 25%;
+
+            &_title {
+                display: flex;
+                justify-content: space-between;
+                color: gray;
+                font-weight: bold;
+                font-size: 22px;
+            }
+
+            &_top {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                background-color: $whiteColor;
+                border-radius: 10px;
+                width: 100%;
+                box-sizing: border-box;
+
+                &_flex_row {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 15px;
+
+                    &_airline {
+                        display: flex;
+                        justify-content: flex-start;
+                        gap: 10px;
+                    }
+                    &_star {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 10px;
+                    }
+                }
+            }
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+        }
+    }
+
+    // Распродажа авиабилетов
+    .sale {
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+
+        &_title {
+            display: flex;
+            justify-content: space-between;
+            color: gray;
+            font-weight: bold;
+            font-size: 22px;
+            padding-bottom: 10px;
+        }
+
+        &_block {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: #d3d3d3e5;
+            font-size: 14px;
+            background-color: $whiteColor;
+            border-radius: 10px;
+            box-sizing: border-box;
+            color: gray;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
+    .title {
+        font-weight: bold;
+        @include body-text(black, 15px);
+        padding: 20px 10px 10px;
+    }
+    .text {
+        padding: 0px 10px 10px 10px;
+    }
+
+    // Раздел помощи
+
+    .chapter_about {
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        gap: 10px;
+
+        &_title {
+            display: flex;
+            justify-content: space-between;
+            color: gray;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        &_question {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: space-between;
+            font-size: 12px;
+            background-color: $whiteColor;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        &_advertising {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            font-size: 18px;
+            background-color: #9370db;
+            border-radius: 10px;
+            padding: 10px;
+
+            &_text {
+                padding: 40px 20px 60px 20px;
+                color: black;
+            }
+
+            &_feedback {
+                display: inline-flex;
+                padding-left: 15px;
+                width: 90%;
+
+                &_input {
+                    display: flex;
+                    position: relative;
+                    height: 40px;
+                    color: $redColor;
+                    background-color: $whiteColor;
+                    border-color: $redColor;
+                    width: 70%;
+                }
+                &_btn {
+                    @include btn($redColor, $whiteColor);
+                    border: 1px solid $redColor;
+                    right: 0px;
+                    width: 20%;
+                }
+                &_icon {
+                    display: flex;
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    color: $redColor;
+                    background-color: rgb(250, 218, 221);
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 50%;
+                    margin-top: -3%;
+                }
+            }
+
+            &_icon {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 50px;
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            width: 100%;
+            margin-top: -30px;
+        }
+    }
+}
+
+.icon {
+    width: 70px;
+    height: 70px;
+}
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-color: $whiteColor;
+    color: #45464c;
+
+    &_icons {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 10px 15px 20px;
+    }
+
+    &_lists {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-bottom: 30px;
+
+        &_li {
+            display: flex;
+            flex-direction: column;
+            line-height: 25px;
+
+            &_title {
+                font-weight: bold;
+                color: black;
+                line-height: 30px;
+            }
+
+            &_pointer {
+                color: rgb(0, 149, 255);
+                font-size: 12px;
+                line-height: 30px;
+            }
+            &_invisible {
+                color: $whiteColor;
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    &_icons {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 10px 15px 20px;
+    }
+    &_navigation {
+        display: none;
+        flex-direction: column;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0px 15px 0px 10px;
+
+        &_block {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid gray;
+            line-height: 50px;
+
+            &_arrow {
+                width: 20px;
+                height: 20px;
+                margin-top: 10px;
+            }
+        }
+        @media (max-width: 768px) {
+            width: 90%;
+            display: flex;
+        }
+    }
+
+    &_contacts {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 20px;
+
+        &_apps {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+
+            &_blue {
+                display: flex;
+                border: 1px solid rgb(0, 149, 255);
+                color: rgb(0, 149, 255);
+                font-size: 14px;
+                background-color: $whiteColor;
+                height: 30px;
+                justify-content: center;
+                align-items: center;
+                padding-left: 5px;
+                padding-right: 5px;
+
+                @media (max-width: 768px) {
+                    width: 50%;
+                }
+            }
+
+            &_black {
+                display: flex;
+                gap: 5px;
+
+                &_item {
+                    display: flex;
+                    color: $whiteColor;
+                    gap: 10px;
+                    font-size: 14px;
+                    background-color: black;
+                    height: 30px;
+                    justify-content: center;
+                    align-items: center;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    border: 1px solid black;
+                }
+            }
+
+            &_icon {
+                width: 20px;
+                height: 20px;
+                background-color: $whiteColor;
+            }
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        &_networks {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+
+            &_icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            @media (max-width: 768px) {
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            width: 90%;
+            flex-direction: column;
+        }
+    }
+}
